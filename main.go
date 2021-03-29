@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/Ressetkk/windblume-lyre-player/score"
 	"github.com/micmonay/keybd_event"
-	"lyre-play/score"
 	"runtime"
 	"time"
 )
