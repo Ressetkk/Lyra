@@ -1,13 +1,8 @@
 package score
 
 import (
-	"bytes"
-	"compress/gzip"
-	"encoding/base64"
-	"encoding/json"
 	"fmt"
 	"github.com/micmonay/keybd_event"
-	"io/ioutil"
 	"strconv"
 	"strings"
 )
@@ -39,14 +34,14 @@ var keymap = map[string]int{
 type Score struct {
 	Name   string `json:"name,omitempty"`
 	Author string `json:"author,omitempty"`
-	Tempo  int    `json:"tempo"`
-	Notes  []Note `json:"notes"`
+	Tempo  int    `json:"tempo,omitempty"`
+	Notes  []Note `json:"notes,omitempty"`
 }
 
 type Note struct {
-	Beat  int    `json:"beat"`
-	Notes []int  `json:"notes"`
-	Mode  string `json:"mode"`
+	Beat  int    `json:"beat,omitempty"`
+	Notes []int  `json:"notes,omitempty"`
+	Mode  string `json:"mode,omitempty"`
 }
 
 type DecodeError struct {
@@ -125,44 +120,6 @@ func parse(s string) ([]int, error) {
 		}
 	}
 	return elems, nil
-}
-
-func Encode(s *Score) (string, error) {
-	var buffer bytes.Buffer
-	jNotes, err := json.Marshal(s)
-	if err != nil {
-		return "", err
-	}
-	gz := gzip.NewWriter(&buffer)
-
-	if _, err := gz.Write(jNotes); err != nil {
-		return "", err
-	}
-	if err := gz.Close(); err != nil {
-		return "", err
-	}
-	return base64.StdEncoding.EncodeToString(buffer.Bytes()), nil
-}
-
-func Decode(exp string) (*Score, error) {
-	dec, err := base64.StdEncoding.DecodeString(exp)
-	if err != nil {
-		return nil, DecodeError{err}
-	}
-	r, err := gzip.NewReader(bytes.NewReader(dec))
-	if err != nil {
-		return nil, DecodeError{err}
-	}
-	res, err := ioutil.ReadAll(r)
-	if err != nil {
-		return nil, DecodeError{err}
-	}
-
-	var score Score
-	if err := json.Unmarshal(res, &score); err != nil {
-		return nil, DecodeError{err}
-	}
-	return &score, nil
 }
 
 func splitMode(s string) (string, string, error) {

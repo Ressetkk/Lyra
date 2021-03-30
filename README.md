@@ -45,8 +45,16 @@ Flags:
 Use "lyra [command] --help" for more information about a command.
 
 ```
+
+### Example songs
+Genshin Impact OST - Winding River by [frostyardor](https://twitter.com/frostyardor/status/1376412040558952452)
 ```
 ./lyra play H4sIAAAAAAAA/+yUsW60MBCEX+XXtjcFthfwz2OkSRFdQQRJKMARRyJFp3v3iAo7srXmRLq06NMynhnNlaZ27Kmhx2Hqhun138Pw2c8Eaj+WNzdTQy+zuyxf7dy59fPSj++OGi5Ak1v6CzVPV3ru24Uau30y5Rk0um49TDdECFVFiWojuIYpoeqNO3mg8khlo7fYI2pJT1mA42cy/hQg4q8ST/ftk835D1PAaNmcxC3eQ7BFWYii/zL/5cwZbGE0fDTlj47nxSLhSWJRdEYrGFpJUEKK//YSazcK+GkkKx9vIouZ7u9GPPgAuTf5wEQxqvw9iHudMRm+oLCEu1RzjslH7Iq9Z1dMvKwZgxBIhjwJXCNDuE0ZffhEHVlD+KGdEtfk7dAiIU7LqkhDVT9W6Hz7DgAA///HnJvV+QgAAA==
+```
+
+Genshin Impact OST - Dawn Winery Theme by [Julleeus](https://www.youtube.com/watch?v=2SYdwyxD1SM)
+```
+H4sIAAAAAAAA/+xUQWrDMBD8itnzFiLLtmSdC6X9QA8lB7UsxBDLIZYpJeTvJYeSqmhKBO3N11k0s+zM6ETBj0KOHiTMuyFUj+PBv8Xqrrr376F6HsIgxw9i8kvcTUdy9LTs9yLLTExRxsNEzrRMYYoyk3s50av4SK65QrrenvkLt1e86VnXrNv8VG8ADtgSnm/qygJ1w2gEpTUrA0ZNXl23rDqwgIVsLVpAFaoj6Y6TJ8lWeSq4ErIPSRt8kL7UjjwO+RH+i0fAoEt0wZPEoyYJD7rVxQ4YksKEbIC6wo53DBt6SxjWpq9N/6umK1yrurxWFrLBACtG6YJn7P8n2Dd8aEmofhRhe/4MAAD//81PfenaBwAA
 ```
 
 ## DISCLAIMER
