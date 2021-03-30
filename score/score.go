@@ -1,10 +1,13 @@
 package score
 
 import (
+	"bytes"
+	"compress/gzip"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"github.com/micmonay/keybd_event"
+	"io/ioutil"
 	"strconv"
 	"strings"
 )
@@ -37,7 +40,7 @@ type Score struct {
 	Name   string `json:"name,omitempty"`
 	Author string `json:"author,omitempty"`
 	Tempo  int    `json:"tempo"`
-	Notes  string `json:"notes"`
+	Notes  []Note `json:"notes"`
 }
 
 type Note struct {
@@ -60,11 +63,12 @@ func Parse(exp, name, author string, tempo int) (*Score, error) {
 	score.Name = name
 	score.Author = author
 
-	if _, err := ParseNotes(exp); err != nil {
+	if n, err := ParseNotes(exp); err != nil {
 		return nil, err
+	} else {
+		score.Notes = n
 	}
 
-	score.Notes = exp
 	return &score, nil
 }
 
@@ -124,11 +128,20 @@ func parse(s string) ([]int, error) {
 }
 
 func Encode(s *Score) (string, error) {
+	var buffer bytes.Buffer
 	jNotes, err := json.Marshal(s)
 	if err != nil {
 		return "", err
 	}
-	return base64.StdEncoding.EncodeToString(jNotes), nil
+	gz := gzip.NewWriter(&buffer)
+
+	if _, err := gz.Write(jNotes); err != nil {
+		return "", err
+	}
+	if err := gz.Close(); err != nil {
+		return "", err
+	}
+	return base64.StdEncoding.EncodeToString(buffer.Bytes()), nil
 }
 
 func Decode(exp string) (*Score, error) {
@@ -136,8 +149,17 @@ func Decode(exp string) (*Score, error) {
 	if err != nil {
 		return nil, DecodeError{err}
 	}
+	r, err := gzip.NewReader(bytes.NewReader(dec))
+	if err != nil {
+		return nil, DecodeError{err}
+	}
+	res, err := ioutil.ReadAll(r)
+	if err != nil {
+		return nil, DecodeError{err}
+	}
+
 	var score Score
-	if err := json.Unmarshal(dec, &score); err != nil {
+	if err := json.Unmarshal(res, &score); err != nil {
 		return nil, DecodeError{err}
 	}
 	return &score, nil

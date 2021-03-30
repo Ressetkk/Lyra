@@ -38,11 +38,7 @@ func (p Player) Play(s *score.Score) error {
 		defer close(noteChan)
 		bpm := time.Minute / time.Duration(s.Tempo)
 
-		notes, err := score.ParseNotes(s.Notes)
-		if err != nil {
-			errChan <- err
-		}
-		for _, n := range notes {
+		for _, n := range s.Notes {
 			// TODO add possible delay between chord notes - if set play each note with 10ms delay
 			noteChan <- n
 			<-time.After(bpm / time.Duration(n.Beat) * 4)

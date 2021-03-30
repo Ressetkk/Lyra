@@ -1,0 +1,473 @@
+{
+  "name": "Winding River",
+  "author": "frostyardor",
+  "tempo": 40,
+  "notes": [
+    {
+      "beat": 8,
+      "notes": [
+        4
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        12
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 6,
+      "notes": [
+        9,
+        4,
+        13
+      ],
+      "mode": "+"
+    },
+    {
+      "beat": 16,
+      "notes": [
+        14
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 4,
+      "notes": [
+        13
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        46,
+        11
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 16,
+      "notes": [
+        14
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 16,
+      "notes": [
+        13
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        12
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        38
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 6,
+      "notes": [
+        45,
+        0,
+        2
+      ],
+      "mode": "+"
+    },
+    {
+      "beat": 16,
+      "notes": [
+        38
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 4,
+      "notes": [
+        38
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 4,
+      "notes": [
+        11,
+        46
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        4
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        12
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 6,
+      "notes": [
+        9,
+        4,
+        13
+      ],
+      "mode": "+"
+    },
+    {
+      "beat": 16,
+      "notes": [
+        14
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 4,
+      "notes": [
+        13
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        46,
+        11
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 16,
+      "notes": [
+        14
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 16,
+      "notes": [
+        13
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        12
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        38
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 6,
+      "notes": [
+        6,
+        11,
+        2,
+        38
+      ],
+      "mode": "+"
+    },
+    {
+      "beat": 16,
+      "notes": [
+        17
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 4,
+      "notes": [
+        17
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        8
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        46
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        5,
+        16
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        17
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 6,
+      "notes": [
+        7,
+        9,
+        0,
+        14
+      ],
+      "mode": "+"
+    },
+    {
+      "beat": 16,
+      "notes": [
+        4
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 4,
+      "notes": [
+        14
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        46,
+        11
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 16,
+      "notes": [
+        13
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 16,
+      "notes": [
+        12
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        38
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        5
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        45,
+        0,
+        2
+      ],
+      "mode": "+"
+    },
+    {
+      "beat": 16,
+      "notes": [
+        0
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 16,
+      "notes": [
+        38
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        2,
+        38
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        5
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 4,
+      "notes": [
+        46,
+        11
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        4
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        12
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        9,
+        4,
+        13
+      ],
+      "mode": "+"
+    },
+    {
+      "beat": 16,
+      "notes": [
+        1
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 16,
+      "notes": [
+        14
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        4,
+        13
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        9,
+        12
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        11,
+        38
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 16,
+      "notes": [
+        14
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 16,
+      "notes": [
+        13
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        38
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        5
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        45,
+        0,
+        2,
+        4
+      ],
+      "mode": "+"
+    },
+    {
+      "beat": 8,
+      "notes": [
+        0
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        2
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        1
+      ],
+      "mode": ""
+    },
+    {
+      "beat": 8,
+      "notes": [
+        45,
+        2,
+        12,
+        16
+      ],
+      "mode": ""
+    }
+  ]
+}
