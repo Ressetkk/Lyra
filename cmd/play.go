@@ -25,11 +25,21 @@ After running the program you'll have 10 seconds before it starts generating key
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Printf("Playing song \"%s\", by %s...\n", dec.Name, dec.Author)
-		if p, err := player.New(); err != nil {
+		initMsg := "Playing song"
+		if dec.Name != "" {
+			initMsg += fmt.Sprintf("\"%s\"", dec.Name)
+		}
+		if dec.Author != "" {
+			fmt.Sprintf(", by %s", dec.Author)
+		}
+		initMsg += "..."
+		fmt.Println(initMsg)
+		if p, err := player.New(debug); err != nil {
 			log.Fatal(err)
 		} else {
-			p.Play(dec)
+			if err := p.Play(dec); err != nil {
+				log.Fatal(err)
+			}
 		}
 
 	},

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/Ressetkk/windblume-lyre-player/player"
 	"github.com/Ressetkk/windblume-lyre-player/score"
 	"github.com/spf13/cobra"
 	"log"
@@ -34,7 +35,13 @@ You can optionally provide the name and the author of the score.`,
 			}
 			fmt.Println(enc)
 			if o.play {
-				// TODO play a song
+				if p, err := player.New(debug); err != nil {
+					log.Fatal(err)
+				} else {
+					if err := p.Play(sc); err != nil {
+						log.Fatal(err)
+					}
+				}
 			}
 		},
 	}
@@ -44,7 +51,7 @@ You can optionally provide the name and the author of the score.`,
 	encodeCmd.Flags().StringVarP(&o.notes, "notes", "n", "", "Notes to encode")
 	encodeCmd.Flags().IntVarP(&o.tempo, "tempo", "t", 60, "Tempo of the score")
 	encodeCmd.Flags().BoolVar(&o.play, "play", false, "Play the score after encoding")
-	encodeCmd.MarkFlagRequired("name")
+	encodeCmd.MarkFlagRequired("notes")
 	encodeCmd.MarkFlagRequired("tempo")
 
 	return encodeCmd

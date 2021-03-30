@@ -53,34 +53,13 @@ func (de DecodeError) Error() string {
 	return fmt.Sprintf("score decode error: %v", de.err)
 }
 
-// TODO move it to separate player package
-//func (s Score) Play(kb *keybd_event.KeyBonding) error {
-//	scoreList := strings.Split(s.Exp, " ")
-//	bpm := time.Minute / time.Duration(s.Tempo)
-//	log.Printf("starting play bpm=%v", bpm)
-//	for _, note := range scoreList {
-//		pNote, err := ParseNote(note)
-//		if err != nil {
-//			return err
-//		}
-//		kb.SetKeys(pNote.Notes...)
-//		kb.Launching()
-//
-//		sl := bpm / time.Duration(pNote.Beat) * 4
-//		log.Printf("note=%v beat=%v sleep=%v", pNote.Notes, pNote.Beat, sl)
-//		time.Sleep(sl)
-//	}
-//
-//	return nil
-//}
-
 func Parse(exp, name, author string, tempo int) (*Score, error) {
 	var score Score
 	score.Tempo = tempo
 	score.Name = name
 	score.Author = author
 
-	if _, err := parseNotes(exp); err != nil {
+	if _, err := ParseNotes(exp); err != nil {
 		return nil, err
 	}
 
@@ -88,7 +67,7 @@ func Parse(exp, name, author string, tempo int) (*Score, error) {
 	return &score, nil
 }
 
-func parseNotes(exp string) ([]Note, error) {
+func ParseNotes(exp string) ([]Note, error) {
 	var notes []Note
 	sepNotes := strings.Split(exp, " ")
 	for _, note := range sepNotes {
@@ -112,7 +91,7 @@ func ParseNote(s string) (*Note, error) {
 	} else {
 		n.Notes = v
 	}
-
+	// TODO convert to float to easy allow extended notes
 	pb, err := strconv.Atoi(sn[1])
 	if err != nil {
 		return nil, err
