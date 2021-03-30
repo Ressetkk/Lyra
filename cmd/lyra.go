@@ -9,8 +9,8 @@ import (
 var (
 	rootCmd = &cobra.Command{
 		Use:   "lyra",
-		Short: "Play scores on the Windblume Lyre",
-		Long: `Lyra is a simple application that plays custom scors on the Windblume Lyre - toy from limited Genshin Impact event Windblume Festival.
+		Short: "Play scores on the Windsong Lyre",
+		Long: `Lyra is a simple application that plays custom scors on the Windsong Lyre - toy from limited Genshin Impact event Windblume Festival.
 The application sends mapped key events that simulate pressing lyre notes.`,
 	}
 
