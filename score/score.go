@@ -1,12 +1,12 @@
 package score
 
 import (
+	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"github.com/micmonay/keybd_event"
-	"log"
 	"strconv"
 	"strings"
-	"time"
 )
 
 var keymap = map[string]int{
@@ -34,50 +34,83 @@ var keymap = map[string]int{
 }
 
 type Score struct {
-	Exp string
-	Tempo int
-}
-
-func NewScore(exp string, tempo int) *Score {
-	return &Score{Exp: exp, Tempo: tempo}
+	Name   string `json:"name,omitempty"`
+	Author string `json:"author,omitempty"`
+	Tempo  int    `json:"tempo"`
+	Notes  string `json:"notes"`
 }
 
 type Note struct {
-	Beat int
-	Note []int
+	Beat  int   `json:"beat"`
+	Notes []int `json:"notes"`
+}
+
+type DecodeError struct {
+	err error
+}
+
+func (de DecodeError) Error() string {
+	return fmt.Sprintf("score decode error: %v", de.err)
 }
 
 // TODO move it to separate player package
-func (s Score) Play(kb *keybd_event.KeyBonding) error {
-	scoreList := strings.Split(s.Exp, " ")
-	bpm := time.Minute / time.Duration(s.Tempo)
-	log.Printf("starting play bpm=%v", bpm)
-	for _, note := range scoreList {
-		pNote, err := ParseNote(note)
-		if err != nil {
-			return err
-		}
-		kb.SetKeys(pNote.Note...)
-		kb.Launching()
+//func (s Score) Play(kb *keybd_event.KeyBonding) error {
+//	scoreList := strings.Split(s.Exp, " ")
+//	bpm := time.Minute / time.Duration(s.Tempo)
+//	log.Printf("starting play bpm=%v", bpm)
+//	for _, note := range scoreList {
+//		pNote, err := ParseNote(note)
+//		if err != nil {
+//			return err
+//		}
+//		kb.SetKeys(pNote.Notes...)
+//		kb.Launching()
+//
+//		sl := bpm / time.Duration(pNote.Beat) * 4
+//		log.Printf("note=%v beat=%v sleep=%v", pNote.Notes, pNote.Beat, sl)
+//		time.Sleep(sl)
+//	}
+//
+//	return nil
+//}
 
-		sl := bpm / time.Duration(pNote.Beat) * 4
-		log.Printf("note=%v beat=%v sleep=%v", pNote.Note, pNote.Beat, sl)
-		time.Sleep(sl)
+func Parse(exp, name, author string, tempo int) (*Score, error) {
+	var score Score
+	score.Tempo = tempo
+	score.Name = name
+	score.Author = author
+
+	if _, err := parseNotes(exp); err != nil {
+		return nil, err
 	}
 
-	return nil
+	score.Notes = exp
+	return &score, nil
+}
+
+func parseNotes(exp string) ([]Note, error) {
+	var notes []Note
+	sepNotes := strings.Split(exp, " ")
+	for _, note := range sepNotes {
+		pNote, err := ParseNote(note)
+		if err != nil {
+			return nil, fmt.Errorf("note parse error: %w", err)
+		}
+		notes = append(notes, *pNote)
+	}
+	return notes, nil
 }
 
 func ParseNote(s string) (*Note, error) {
 	var n Note
-	sn:= strings.Split(s, "/")
+	sn := strings.Split(s, "/")
 	if len(sn) != 2 {
 		return nil, fmt.Errorf("couldn't split note: %v", s)
 	}
 	if v, err := parse(sn[0]); err != nil {
 		return nil, err
 	} else {
-		n.Note = v
+		n.Notes = v
 	}
 
 	pb, err := strconv.Atoi(sn[1])
@@ -102,4 +135,24 @@ func parse(s string) ([]int, error) {
 		}
 	}
 	return elems, nil
+}
+
+func Encode(s *Score) (string, error) {
+	jnotes, err := json.Marshal(s)
+	if err != nil {
+		return "", err
+	}
+	return base64.StdEncoding.EncodeToString(jnotes), nil
+}
+
+func Decode(exp string) (*Score, error) {
+	dec, err := base64.StdEncoding.DecodeString(exp)
+	if err != nil {
+		return nil, DecodeError{err}
+	}
+	var score Score
+	if err := json.Unmarshal(dec, &score); err != nil {
+		return nil, DecodeError{err}
+	}
+	return &score, nil
 }
