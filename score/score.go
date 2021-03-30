@@ -41,8 +41,9 @@ type Score struct {
 }
 
 type Note struct {
-	Beat  int   `json:"beat"`
-	Notes []int `json:"notes"`
+	Beat  int    `json:"beat"`
+	Notes []int  `json:"notes"`
+	Mode  string `json:"mode"`
 }
 
 type DecodeError struct {
@@ -82,6 +83,12 @@ func ParseNotes(exp string) ([]Note, error) {
 
 func ParseNote(s string) (*Note, error) {
 	var n Note
+	mode, s, err := splitMode(s)
+	if err != nil {
+		return nil, err
+	}
+	n.Mode = mode
+
 	sn := strings.Split(s, "/")
 	if len(sn) != 2 {
 		return nil, fmt.Errorf("couldn't split note: %v", s)
@@ -117,11 +124,11 @@ func parse(s string) ([]int, error) {
 }
 
 func Encode(s *Score) (string, error) {
-	jnotes, err := json.Marshal(s)
+	jNotes, err := json.Marshal(s)
 	if err != nil {
 		return "", err
 	}
-	return base64.StdEncoding.EncodeToString(jnotes), nil
+	return base64.StdEncoding.EncodeToString(jNotes), nil
 }
 
 func Decode(exp string) (*Score, error) {
@@ -134,4 +141,15 @@ func Decode(exp string) (*Score, error) {
 		return nil, DecodeError{err}
 	}
 	return &score, nil
+}
+
+func splitMode(s string) (string, string, error) {
+	if strings.Contains(s, ":") {
+		sn := strings.Split(s, ":")
+		if len(sn) != 2 {
+			return "", "", fmt.Errorf("couldn't extract mode: %v", s)
+		}
+		return sn[0], sn[1], nil
+	}
+	return "", s, nil
 }

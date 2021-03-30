@@ -56,7 +56,7 @@ func (p Player) Play(s *score.Score) error {
 		case n, ok := <-noteChan:
 			if ok {
 				if p.Debug {
-					log.Printf("note=%v beat=%v", n.Notes, n.Beat)
+					log.Printf("note=%v beat=%v mode=%v", n.Notes, n.Beat, n.Mode)
 				}
 				p.kb.SetKeys(n.Notes...)
 				if err := p.kb.Launching(); err != nil {
