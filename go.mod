@@ -1,4 +1,4 @@
-module github.com/Ressetkk/windblume-lyre-player
+module github.com/Ressetkk/lyra
 
 go 1.15
 

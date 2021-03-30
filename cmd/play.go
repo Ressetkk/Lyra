@@ -2,16 +2,11 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/Ressetkk/windblume-lyre-player/player"
-	"github.com/Ressetkk/windblume-lyre-player/score"
+	"github.com/Ressetkk/lyra/player"
+	"github.com/Ressetkk/lyra/score"
 	"github.com/spf13/cobra"
 	"log"
 )
-
-type playOptions struct {
-	score string
-	tempo string
-}
 
 var playCmd = &cobra.Command{
 	Use:   "play",
@@ -27,10 +22,10 @@ After running the program you'll have 10 seconds before it starts generating key
 		}
 		initMsg := "Playing song"
 		if dec.Name != "" {
-			initMsg += fmt.Sprintf("\"%s\"", dec.Name)
+			initMsg += fmt.Sprintf(" \"%s\"", dec.Name)
 		}
 		if dec.Author != "" {
-			fmt.Sprintf(", by %s", dec.Author)
+			initMsg += fmt.Sprintf(", by %s", dec.Author)
 		}
 		initMsg += "..."
 		fmt.Println(initMsg)

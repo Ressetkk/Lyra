@@ -1,7 +1,7 @@
 package player
 
 import (
-	"github.com/Ressetkk/windblume-lyre-player/score"
+	"github.com/Ressetkk/lyra/score"
 	"strconv"
 )
 

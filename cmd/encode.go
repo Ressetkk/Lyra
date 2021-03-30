@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/Ressetkk/windblume-lyre-player/player"
-	"github.com/Ressetkk/windblume-lyre-player/score"
+	"github.com/Ressetkk/lyra/player"
+	"github.com/Ressetkk/lyra/score"
 	"github.com/spf13/cobra"
 	"log"
 )
@@ -24,11 +24,21 @@ func EncodeCmd() *cobra.Command {
 		Long: `Encode will parse the raw score and tempo to the base64-encoded string which you can play and share with others.
 You can optionally provide the name and the author of the score.`,
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Printf("Encoding score: %s, by %s...\n", o.name, o.author)
 			sc, err := score.Parse(o.notes, o.name, o.author, o.tempo)
 			if err != nil {
 				log.Fatal(err)
 			}
+
+			initMsg := "Encoding song"
+			if sc.Name != "" {
+				initMsg += fmt.Sprintf(" \"%s\"", sc.Name)
+			}
+			if sc.Author != "" {
+				initMsg += fmt.Sprintf(", by %s", sc.Author)
+			}
+			initMsg += "..."
+			fmt.Println(initMsg)
+
 			enc, err := score.Encode(sc)
 			if err != nil {
 				log.Fatal(err)

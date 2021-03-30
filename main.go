@@ -1,6 +1,6 @@
 package main
 
-import "github.com/Ressetkk/windblume-lyre-player/cmd"
+import "github.com/Ressetkk/lyra/cmd"
 
 func main() {
 	cmd.Execute()
