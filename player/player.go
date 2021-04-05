@@ -9,12 +9,16 @@ import (
 	"time"
 )
 
-type Player struct {
+type ScorePlayer struct {
 	kb    *keybd_event.KeyBonding
 	Debug bool
 }
 
-func New(debug bool) (*Player, error) {
+type Player interface {
+	Play() error
+}
+
+func New(debug bool) (*ScorePlayer, error) {
 	kb, err := keybd_event.NewKeyBonding()
 	if err != nil {
 		return nil, err
@@ -22,13 +26,13 @@ func New(debug bool) (*Player, error) {
 	if runtime.GOOS == "linux" {
 		time.Sleep(2 * time.Second)
 	}
-	var p Player
+	var p ScorePlayer
 	p.kb = &kb
 	p.Debug = debug
 	return &p, nil
 }
 
-func (p Player) Play(s *score.Score) error {
+func (p ScorePlayer) Play(s *score.Score) error {
 	fmt.Println("Waiting 10 seconds before playing a score. Open up your game window!")
 	<-time.After(10 * time.Second)
 

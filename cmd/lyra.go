@@ -18,7 +18,7 @@ The application sends mapped key events that simulate pressing lyre notes.`,
 )
 
 func init() {
-	rootCmd.AddCommand(EncodeCmd(), playCmd)
+	rootCmd.AddCommand(EncodeCmd(), playCmd, ListenCmd())
 	rootCmd.PersistentFlags().BoolVar(&debug, "debug", false, "Print debug information.")
 }
 
