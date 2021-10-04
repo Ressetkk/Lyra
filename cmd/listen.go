@@ -2,25 +2,25 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/Ressetkk/lyra/midi"
+	"github.com/Ressetkk/lyra/cable"
 	"github.com/spf13/cobra"
 )
 
 var (
-	dev    *midi.Device
+	dev    *cable.Cable
 	devNum int
 )
 
 func ListenCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "listen",
+		Use:   "cable",
 		Short: "Listen to MIDI controller and translate it to key presses",
 		Long: `Listen to MIDI controller events to play songs.
 The application will translate every key to specific key press events.
 
 To list available MIDI inputs type "lyra listen list".`,
 		PersistentPreRun: func(cmd *cobra.Command, args []string) {
-			d, err := midi.NewDevice()
+			d, err := cable.New()
 			if err != nil {
 				panic(err)
 			}
@@ -28,7 +28,7 @@ To list available MIDI inputs type "lyra listen list".`,
 		},
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Printf("Listening to the keypresses on the device %v...\n", devNum)
-			err := dev.ListenTo(devNum)
+			err := dev.Bridge(devNum)
 			if err != nil {
 				panic(err)
 			}
